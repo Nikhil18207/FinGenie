@@ -4,7 +4,6 @@ beautifulsoup4==4.13.3
 certifi==2025.1.31
 charset-normalizer==3.4.1
 colorama==0.4.6
-comtypes==1.4.10
 distro==1.9.0
 frozendict==2.4.6
 h11==0.14.0
@@ -20,12 +19,10 @@ peewee==3.17.9
 platformdirs==4.3.7
 pydantic==2.11.3
 pydantic_core==2.33.1
-pypiwin32==223
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
-pyttsx3==2.98
+# pyttsx3==2.98
 pytz==2025.2
-pywin32==310
 requests==2.32.3
 schedule==1.2.2
 six==1.17.0
