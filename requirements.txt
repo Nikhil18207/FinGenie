@@ -37,3 +37,4 @@ tzdata==2025.2
 urllib3==2.4.0
 yfinance==0.2.55
 feedparser==6.0.11
+plotly==5.20.0
