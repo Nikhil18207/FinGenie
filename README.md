@@ -65,3 +65,65 @@ touch .env
 
 # 5. Run the app
 streamlit run dashboard.py
+
+📊 Portfolio CSV Format
+csv
+Copy
+Edit
+Ticker,Shares
+AAPL,10
+MSFT,5
+GOOGL,3
+You can upload this from the dashboard or add entries manually.
+
+🧪 Example Commands (Voice)
+“What’s today’s market update?”
+
+“Recommend some stocks to invest in”
+
+“Tell me about AAPL stock news”
+
+🌐 Try It Live
+🔗 FinGenie on Streamlit Cloud
+(Demo link — replace with your deployed URL once live)
+
+📁 Project Structure
+bash
+Copy
+Edit
+├── dashboard.py                  # Main Streamlit UI
+├── scheduler.py                  # Background scheduler for alerts
+├── recommender/
+│   ├── stock_recommender.py
+│   ├── stock_today_insights.py
+│   ├── stock_charts.py
+│   └── news_summarizer.py
+├── utils/
+│   ├── email_notifier.py
+│   ├── helpers.py
+│   └── watchlist_manager.py
+├── portfolio/
+│   └── portfolio_tracker.py
+├── voice/
+│   ├── voice_input.py
+│   └── voice_output.py
+├── requirements.txt
+└── .env (not tracked)
+🙋‍♂️ Author
+Built with ❤️ by Nikhil Kumar
+
+📧 nikhil18207@gmail.com
+
+🐦 @nikhil18207
+
+💼 LinkedIn
+
+⚠️ Disclaimer
+This app is built for educational/research/demo purposes only. It should not be used for actual financial trading decisions.
+
+⭐ Star this repo if you like it!
+bash
+Copy
+Edit
+git commit -m "⭐ Added AI stock assistant with GPT, charts, and voice!"
+
