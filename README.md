@@ -2,8 +2,6 @@
 
 FinGenie is your intelligent stock market companion that combines **GPT-powered insights**, **real-time market data**, **technical recommendations**, **portfolio tracking**, and even **voice support** — all in one sleek Streamlit dashboard.
 
-![FinGenie Banner](https://github.com/Nikhil18207/FinGenie/assets/banner.png) <!-- Add a banner image if you'd like -->
-
 ---
 
 ## 🚀 Features
