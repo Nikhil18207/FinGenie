@@ -13,14 +13,14 @@ from portfolio.portfolio_tracker import load_portfolio_csv, calculate_portfolio
 import pandas as pd
 
 
-# Set page config with a vibrant theme
+
 st.set_page_config(
     page_title="📊 FinGenie – AI Stock Assistant",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for colorful and stylish design
+
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
@@ -148,10 +148,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Title with emoji
+
 st.markdown("<h1>🧞‍♂️ FinGenie – Your AI-Powered Stock Assistant</h1>", unsafe_allow_html=True)
 
-# Watchlist
+
 watchlist = load_watchlist()
 if not watchlist:
     st.warning("⚠️ Your watchlist is empty. Add at least one stock to continue.")
@@ -162,12 +162,12 @@ if not watchlist:
 with st.container():
     selected_stock = st.selectbox("🔎 Select a Company to Analyze", watchlist, help="Choose a stock from your watchlist")
 
-    # Stock Chart
+
     with st.expander("📉 Candlestick Chart (1 Month)", expanded=True):
         chart = get_candlestick_chart(selected_stock)
         st.plotly_chart(chart, use_container_width=True)
 
-    # Watchlist Editor
+
     with st.expander("⚙️ Manage Your Watchlist", expanded=False):
         st.write("Add or remove stocks from your FinGenie watchlist.")
         new_stock = st.text_input("➕ Add New Stock Ticker (e.g., META)", "")
@@ -181,7 +181,6 @@ with st.container():
             remove_stock(remove_stock_option)
             st.success(f"Removed {remove_stock_option} from watchlist. Please refresh.")
 
-    # Market Insights
     with st.expander("📊 Today's Market Insights", expanded=True):
         insights = get_today_insights(watchlist)
         summary = format_today_summary(insights)
@@ -190,7 +189,7 @@ with st.container():
             send_stock_email("📊 FinGenie – Today's Market Insights", summary)
             st.success("Market insights sent!")
 
-    # Stock Recommendations
+   
     with st.expander("📈 Technical Recommendations", expanded=True):
         recos = recommend_stocks(watchlist)
         rec_summary = format_recommendation_text(recos)
@@ -199,7 +198,7 @@ with st.container():
             send_stock_email("📈 FinGenie – Stock Recommendations", rec_summary)
             st.success("Recommendations emailed!")
 
-    # GPT News Summary
+   
     with st.expander("🧠 GPT News Summary for Selected Stock", expanded=True):
         if st.button("📰 Generate Summary"):
             news = get_stock_news_summary(selected_stock)
@@ -208,24 +207,24 @@ with st.container():
                 send_stock_email(f"🧠 GPT Summary for {selected_stock}", news)
                 st.success("GPT summary emailed!")
 
-    # Voice Assistant
+  
     st.subheader("🎤 Voice Assistant")
     audio = mic_recorder(start_prompt="🎙️ Click to Speak", stop_prompt="✅ Done", key="mic")
 
     if audio:
         st.audio(audio['bytes'], format='audio/wav')
         try:
-            # Save mic-recorder audio to temp file
+           
             with tempfile.NamedTemporaryFile(delete=False, suffix=".webm") as tmp:
                 tmp.write(audio['bytes'])
                 raw_audio_path = tmp.name
 
-            # Convert to PCM WAV using pydub
+           
             pcm_path = raw_audio_path.replace(".webm", "_converted.wav")
             sound = AudioSegment.from_file(raw_audio_path)
             sound.export(pcm_path, format="wav")
 
-            # Transcribe using speech recognition
+        
             recognizer = sr.Recognizer()
             with sr.AudioFile(pcm_path) as source:
                 audio_data = recognizer.record(source)
@@ -233,7 +232,7 @@ with st.container():
             command = recognizer.recognize_google(audio_data)
             st.success(f"🗣️ You said: {command}")
 
-            # Process voice command
+        
             if any(ticker.lower() in command.lower() for ticker in watchlist):
                 stock = next((ticker for ticker in watchlist if ticker.lower() in command.lower()), None)
                 summary = get_stock_news_summary(stock)
@@ -258,11 +257,11 @@ with st.container():
         except Exception as e:
             st.error(f"❌ Voice processing failed: {e}")
             
-# --- 💼 Portfolio Tracker ---
+
 with st.expander("💼 Portfolio Tracker", expanded=False):
     st.write("Upload your portfolio or manually add stocks to analyze your holdings in real-time.")
 
-    # --- 📁 CSV Upload ---
+ 
     uploaded_file = st.file_uploader("📁 Upload CSV with columns: Ticker, Shares", type=["csv"])
 
     if uploaded_file:
@@ -281,7 +280,7 @@ with st.expander("💼 Portfolio Tracker", expanded=False):
 
     st.divider()
 
-    # --- ✍️ Manual Entry ---
+
     st.markdown("### 📝 Or Add a Stock Manually")
 
     with st.form("manual_entry_form"):
@@ -289,7 +288,7 @@ with st.expander("💼 Portfolio Tracker", expanded=False):
         manual_shares = st.number_input("🔢 Number of Shares", min_value=0, step=1)
         submit_manual = st.form_submit_button("➕ Add to Portfolio")
 
-    # Session state to store manual entries
+  
     if "manual_portfolio" not in st.session_state:
         st.session_state.manual_portfolio = []
 
